@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <title>ITCD Capstone Festival</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- BOOTSTRAP -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+    <!-- END BOOTSTRAP -->
+    
+    <link rel="stylesheet" media="only screen and (max-width: 768px)" href="css/mobile.css" />
+    
+    <!-- FAVICON -->
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<!-- END FAVICON -->
+    
+  </head>
+  
+  <body>
+
+  	<div class="container">
+  	
+  		<div class="row" id="header">
+  			<div class="hidden-md hidden-lg hidden-sm col-xs-1">
+  				<span class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#">Schedule</a></li>
+					<li class="active"><a href="#">Projects</a></li>
+					<li class="right-padding"><a href="#">Live</a></li>
+					<li class="right-padding left-padding"><a href="#">Map</a></li>
+					<li class="left-padding"><a href="#">About Us</a></li>
+				  </ul>
+				</span>
+  			</div>
+  			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 text-left green-text">
+  				<h4>School of Information Technology and Communication Design</h4>
+  			</div>
+  			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 text-left">
+  				<h1><span class="orange-text">Spring 2014</span> <span class="blue-text">Capstone Festival</span></h1>
+  			</div>
+  		</div>
+  		
+  		<div class="row hidden-xs" id="nav">
+  			<div class="col-md-12">
+  				<nav class="navbar navbar-default" role="navigation">
+				  <div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					  </button>
+					  <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">Navigation</a>
+					</div>
+
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					  <ul class="nav navbar-nav">
+						<li><a href="#">Schedule</a></li>
+						<li class="dropdown active">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Project #1</a></li>
+							<li><a href="#">Project #2</a></li>
+							<li><a href="#">Project #3</a></li>
+						  </ul>
+						</li>
+						<li>
+							<div>
+								<form class="navbar-form navbar-left" role="search">
+									<div class="form-group">
+										<input type="text" class="form-control" placeholder="Search Projects">
+									</div>
+									<button type="submit" class="btn btn-default">Search</button>
+								</form>
+							</div>
+						</li>
+						<li class="right-padding"><a href="#">Live</a></li>
+						<li class="right-padding left-padding"><a href="#">Map</a></li>
+						<li class="left-padding"><a href="#">About Us</a></li>
+					  </ul>
+					</div><!-- /.navbar-collapse -->
+				  </div><!-- /.container-fluid -->
+				</nav>
+  			</div>
+  		</div>
+
+		<div class="tab-content">  	
+		
+			<div id="schedule" class="tab-pane">
+				<div class="row sub-content">
+					<div class="col-md-12">
+						Up Next <span class="orange-text">&nbsp;|&nbsp;</span> Group #2 is presenting in <a>Room 118</a> at 10:00am!
+					</div>
+				</div>
+		
+				<div class="row content">
+					<div class="container">
+						<div class="col-md-4 left-col">
+							<h2 class="green-text">Schedule</h2>
+							<dl>
+								<dt>9:00am - 9:50am</dt>
+								<dd>Group #1 Presentations</dd>
+								<dt class="active">10:00am - 10:50am</dt>
+								<dd class="active">Group #2 Presentations</dd>
+								<dt>11:00am - 11:50am</dt>
+								<dd>Group #3 Presentations</dd>
+								<dt>12:00pm - 12:50pm</dt>
+								<dd>Group #4 Presentations</dd>
+								<dt>2:00pm - 2:50pm</dt>
+								<dd>Award Ceremony</dd>
+							</dl>
+						</div>
+						<div class="col-md-8">
+							<h2 class="green-text">To Do List</h2>
+							<form>
+								<input type="checkbox" name="todo" value="item1"> Watch Group #1 presentation<br><br>
+								<input type="checkbox" name="todo" value="item2"> See The Best Project Ever's poster session<br><br>
+								<input type="checkbox" name="todo" value="item3"> See Another Really Cool Project's poster session<br>
+							</form> 
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="projects" class="tab-pane active">
+				<div class="row sub-content">
+					<div class="col-md-12 hidden-xs">
+						<a href="#">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Sort By: &nbsp; <a class="active">Major</a> &nbsp; &nbsp; <a>Student</a> &nbsp; &nbsp; <a>Presentation</a> &nbsp; &nbsp; <a>Group</a> &nbsp; &nbsp; <a>Poster Room</a>
+					</div>
+					<div class="col-md-12 hidden-sm hidden-md hidden-lg">
+						<a href="#">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Sort By: &nbsp; 
+						<span class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#" class="active">Major</a></li>
+							<li><a href="#">Student</a></li>
+							<li><a href="#">Presentation</a></li>
+							<li><a href="#">Group</a></li>
+							<li><a href="#">Poster Room</a></li>
+						  </ul>
+						</span>
+					</div>
+				</div>
+		
+				<div class="row content">
+					<div class="container">
+						<div class="col-md-12">
+							<a href="projects/origin/origin.html"><div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('projects/origin/origin.png')" ></div></a>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-orange-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-blue-border" style="background-image: url('images/placeholder.jpg')" ></div>
+							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-green-border" style="background-image: url('images/placeholder.jpg')" ></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="live" class="tab-pane">
+				<div class="row sub-content">
+					<div class="col-md-12">
+						Up Next <span class="orange-text">&nbsp;|&nbsp;</span> Group #2 is presenting in <a>Room 118</a> at 10:00am!
+					</div>
+				</div>
+		
+				<div class="row content">
+					<div class="container">
+						<div class="col-md-4 left-col">
+							<h2 class="green-text">Twitter Feed</h2>
+							<div class="twitter-feed">
+								<a class="twitter-timeline"  href="https://twitter.com/search?q=%23csumb"  data-widget-id="439480944240508928">
+									Tweets about "#csumb"
+								</a>
+								<script>
+									!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+								</script>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<h2 class="green-text">Live Stream</h2>
+							<div class="video-placeholder"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>	
+			
+  	</div>
+  	
+  </body>
+  
+  <script>
+  	$(function(){
+		$(window).bind("resize",function(){
+			if($(this).width() < 768){
+				$('#page-navigation .nav').removeClass('nav-justified')
+			} else {
+				$('#page-navigation .nav').removeClass('nav-justified').addClass('nav-justified')
+			}
+			
+			if($(this).width() < 995){
+				$('#nav li.active').css("display", "none")
+			} else {
+				$('#nav li.active').css("display", "block")
+			}
+		})
+	})
+	
+	$( document ).ready(function() {
+		if($(this).width() < 768){
+				$('#page-navigation .nav').removeClass('nav-justified')
+			} else {
+				$('#page-navigation .nav').removeClass('nav-justified').addClass('nav-justified')
+			}
+			
+			if($(this).width() < 995){
+				$('#nav li.active').css("display", "none")
+			} else {
+				$('#nav li.active').css("display", "block")
+			}
+	});
+	
+	$('#schedule-tab a').click(function (e) {
+  		e.preventDefault()
+  		$(this).tab('show')
+	})
+	
+	$('#projects-tab a').click(function (e) {
+  		e.preventDefault()
+  		$(this).tab('show')
+	})
+	
+	$('#live-tab a').click(function (e) {
+  		e.preventDefault()
+  		$(this).tab('show')
+	})
+	
+  </script>
+  
+</html>

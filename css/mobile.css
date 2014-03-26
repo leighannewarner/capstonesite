@@ -1,0 +1,56 @@
+/*
+ * BLUE: #21409a
+ * GREEN: #00a14b
+ * ORANGE: #f26522
+ */
+ 
+#header h1 {
+ 	font-size: 1.4em;
+}
+ 
+#header h4 {
+ 	font-size: .7em;
+}
+ 
+#page-navigation .nav-pills li a {
+	font-size: 1em;
+	border: 3px solid #00a14b;
+	padding: 10px;
+	padding-left: 1px;
+	padding-right: 1px;
+	width: 80px;
+	text-align: center;
+}
+
+#page-navigation ul.nav li.right-padding {
+	padding-right: 1px;
+}
+
+#page-navigation ul.nav li.left-padding {
+	padding-left: 1px;
+}
+
+.sub-content .dropdown-menu a {
+	color: #21409a;
+}
+
+.sub-content .dropdown-menu a:hover {
+	background-color: white;
+}
+
+.sub-content a.active {
+	color: #f26522;
+}
+
+.sub-content a:hover {
+	color: #f26522;
+	text-decoration: none;
+}
+
+.sub-content span.dropdown.open a {
+	text-decoration: none;
+}
+
+.left-col, .right-col {
+	border: none;
+}
