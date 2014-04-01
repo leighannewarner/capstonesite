@@ -7,8 +7,8 @@
   				<span class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-align-justify"></span></a>
 				  <ul class="dropdown-menu">
-					<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/capstonesite/schedule.php">Schedule</a></li>
 					<li' . (($active == 'projects') ? ' class="active"' : '') . '><a href="/capstonesite/index.php">Projects</a></li>
+					<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/capstonesite/schedule.php">Schedule</a></li>
 					<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/capstonesite/live.php">Live</a></li>
 					<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/capstonesite/map.php">Map</a></li>
 					<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/capstonesite/about.php">About</a></li>
@@ -52,16 +52,6 @@
 							<li><a href="#">Project #3</a></li>
 						  </ul>
 						</li>
-						<li>
-							<div>
-								<form class="navbar-form navbar-left" role="search">
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Search Projects">
-									</div>
-									<button type="submit" class="btn btn-default">Search</button>
-								</form>
-							</div>
-						</li>
 						<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/capstonesite/live.php">Live</a></li>
 						<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/capstonesite/map.php">Map</a></li>
 						<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/capstonesite/about.php">About</a></li>
@@ -74,18 +64,26 @@
 	
 	function sub_content_projects() {
 		echo '<div class="col-md-12 hidden-xs">
-					<a href="#">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Sort By: &nbsp; <a class="active">Major</a> &nbsp; &nbsp; <a>Student</a> &nbsp; &nbsp; <a>Presentation</a> &nbsp; &nbsp; <a>Group</a> &nbsp; &nbsp; <a>Poster Room</a>
+					<a href="#"  class="active show-grid">Grid View</a> &nbsp; <a href="#" class="show-list">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Show: &nbsp;
+					<span class="showing"><a class="active" href="#" data-group="all">All</a> &nbsp;
+					<a href="#" data-group="csit">CSIT</a> &nbsp;
+					<a href="#" data-group="cd">CD</a> &nbsp;
+					<a href="#" data-group="inter">Interdisciplinary</a></span>
+					<span class="orange-text">&nbsp;|&nbsp;</span> Sort By: &nbsp;
+					<span class="sorting"><a class="active" href="#" data-group="title">Project Title</a> &nbsp;
+					<a href="#" data-group="major">Major</a> &nbsp;
+					<a href="#" data-group="name">Last Name</a> &nbsp;</span>
 				</div>
 				<div class="col-md-12 hidden-sm hidden-md hidden-lg">
 					<a href="#">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Sort By: &nbsp; 
 					<span class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 					  <ul class="dropdown-menu">
-						<li><a href="#" class="active">Major</a></li>
-						<li><a href="#">Student</a></li>
-						<li><a href="#">Presentation</a></li>
-						<li><a href="#">Group</a></li>
-						<li><a href="#">Poster Room</a></li>
+						<li><a href="#" class="active" data-group="cd">Major</a></li>
+						<li><a href="#" data-group="csit">Student</a></li>
+						<li><a href="#" data-group="inter">Presentation</a></li>
+						<li><a href="#" >Group</a></li>
+						<li><a href="#" >Poster Room</a></li>
 					  </ul>
 					</span>
 				</div>';
@@ -98,33 +96,47 @@
 	}
 	
 	function projects_grid() {
-		echo '<div class="container">
-					<div class="col-md-12">
-						<a href="projects/origin/origin.php">
-							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-inter-border" style="background-image: url(\'projects/origin/origin.png\')" >
-								<div class="photogrid-hovertext">
-									<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>
-								</div>
-							</div>
-						</a>
+		echo '<div class="container project-grid">
+				<div class="col-md-12">
+					<div id="grid" class="row-fluid">
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-inter-border photogrid-duplicate"  data-groups=\'["all", "inter"]\' data-title=\'Origin\' data-major=\'inter\' data-names=\'Gatica\' style="background-image: url(\'projects/origin/origin.png\')">
+							<a href="projects/origin/origin.php" class="photogrid-hovertext">
+								<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>
+							</a>
+						</div>
 						
-						<a href="#">
-							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-csit-border" style="background-image: url(\'images/placeholder.gif\')" >
-								<div class="photogrid-hovertext">
-									<span class="photogrid-label cd">CD</span>
-								</div>
-							</div>
-						</a>
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-inter-border"  data-groups=\'["all", "inter"]\' data-title=\'Origin\' data-major=\'inter\' data-names=\'Warner\' style="background-image: url(\'projects/origin/origin.png\')">
+							<a href="projects/origin/origin.php" class="photogrid-hovertext">
+								<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>
+							</a>
+						</div>
 						
-						<a href="#">
-							<div class="col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-cd-border" style="background-image: url(\'images/placeholder.gif\')" >
-								<div class="photogrid-hovertext">
-									<span class="photogrid-label csit">CSIT</span>
-								</div>
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-cd-border" data-groups=\'["all", "cd"]\' data-title=\'projectb\' data-major=\'cd\' data-names=\'Pyne\' style="background-image: url(\'images/placeholder.gif\')">
+							<div class="photogrid-hovertext">
+								<span class="photogrid-label cd">CD</span>
 							</div>
-						</a>
+						</div>
+						
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-csit-border"  data-groups=\'["all", "csit"]\' data-title=\'projecta\' data-major=\'csit\' data-names=\'Snider\' style="background-image: url(\'images/placeholder.gif\')">
+							<div class="photogrid-hovertext">
+								<span class="photogrid-label csit">CSIT</span>
+							</div>
+						</div>
+						
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-inter-border"   data-groups=\'["all", "inter"]\' data-title=\'projectm\' data-major=\'inter\' data-names=\'ONeil\' style="background-image: url(\'images/placeholder.gif\')">
+							<div class="photogrid-hovertext">
+								<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>
+							</div>
+						</div>
+						
+						<div class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small photogrid-inter-border photogrid-duplicate"   data-groups=\'["all", "inter"]\' data-title=\'projectm\' data-major=\'inter\' data-names=\'Brown\' style="background-image: url(\'images/placeholder.gif\')">
+							<div class="photogrid-hovertext">
+								<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>
+							</div>
+						</div>
 					</div>
-				</div>';
+				</div>
+			</div>'; 
 	}
 	
 	function project_page() {
