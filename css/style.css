@@ -294,6 +294,10 @@ a.photogrid-hovertext, a.photogrid-hovertext:hover,  a.photogrid-hovertext:activ
 	display: none;
 }
 
+.list-duplicate {
+	display: none;
+}
+
 /********* PROJECT PAGE **********/
  img {
  	max-width: 100px;

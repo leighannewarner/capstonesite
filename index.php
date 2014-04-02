@@ -21,9 +21,11 @@
     
     <link rel="stylesheet" media="only screen and (max-width: 768px)" href="css/mobile.css" />
     <script src="js/jquery.shuffle.js"></script>
+    <script src="js/tablesorter/jquery.tablesorter.js"></script>
     
     <script>
 		$(document).ready(function() {
+			$(".project-list").tablesorter(); 
 
 			/* initialize shuffle plugin */
 			var $grid = $('#grid');
@@ -58,7 +60,19 @@
 					// reshuffle grid
 					$grid.shuffle('shuffle', groupName );
 				} else {
-					alert("Alter the list!");
+					var groupName = $(this).attr('data-group');
+					
+					if(groupName === "all") {
+						$('.project-list tbody tr').show(500)
+					} else {
+						$('.project-list tbody tr').each( function() {
+							if( $(this).attr('data-major') != groupName ) {
+								$(this).hide(500);
+							} else {
+								$(this).show(500);
+							}						
+						});
+					}
 				}
 			});
 
@@ -101,7 +115,22 @@
 				  
 					$grid.shuffle('sort', opts);
 				} else {
-					alert("Shuffle the list!");
+					e.preventDefault();
+				
+					$('.sorting a').removeClass('active');
+					$(this).addClass('active');
+			
+					if ( $(this).attr('data-group') === 'title' ) {
+						var sorting = [[1,0],[3,0]]; 
+					  } else if ( $(this).attr('data-group') === 'major' ) {
+						var sorting = [[2,0],[3,0]]; 
+					  } else if ( $(this).attr('data-group') === 'name' ) {
+						var sorting = [[4,0],[3,0]]; 
+					  }else {
+						alert("You done goofed son");
+					  }
+				  
+					$('.project-list').trigger("sorton",[sorting]);
 				}
 			});
 		});
@@ -132,6 +161,7 @@
 			<div class="row content">
 				<?php projects_grid(); ?>
 				<table class="project-list">
+					<thead>
 					<tr>
 						<th>
 							Icon
@@ -143,38 +173,49 @@
 							Major
 						</th>
 						<th>
-							Student(s)
+							First Name
+						</th>
+						<th>
+							Last Name
 						</th>
 					</tr>
-					<tr>
-						<td rowspan="2">
+					</thead>
+					<tbody>
+					<tr data-major="inter" >
+						<td>
 							<img src="projects/origin/origin.png" />
 						</td>
-						<td rowspan="2">
+						<td>
 							Origin: The Game
 						</td>
 						<td>
 							Communication Design: Interactive Media
 						</td>
 						<td>
-							Ezequiel Gatica
+							Ezequiel
+						</td>
+						<td>
+							Gatica
 						</td>
 					</tr>
-					<tr>
-						<td style="display: none">
+					<tr data-major="inter" >
+						<td>
 							<img src="projects/origin/origin.png" />
 						</td>
-						<td style="display: none">
+						<td>
 							Origin: The Game
 						</td>
 						<td>
 							Computer Science & Information Technology: Software Engineering
 						</td>
 						<td>
-							Leigh Anne Warner
+							Leigh Anne
+						</td>
+						<td>
+							Warner
 						</td>
 					</tr>
-					<tr>
+					<tr data-major="cd" >
 						<td>
 							<img src="images/placeholder.gif" />
 						</td>
@@ -185,10 +226,13 @@
 							Communication Design: Web Development
 						</td>
 						<td>
-							John Doe
+							John
+						</td>
+						<td>
+							Doe
 						</td>
 					</tr>
-					<tr>
+					<tr data-major="csit" >
 						<td>
 							<img src="images/placeholder.gif" />
 						</td>
@@ -199,9 +243,13 @@
 							Computer Science & Information Technology: Networking & Security
 						</td>
 						<td>
-							Jane Doe
+							Jane
+						</td>
+						<td>
+							Doe
 						</td>
 					</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>

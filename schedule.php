@@ -50,18 +50,39 @@
   	</div>
   	
   	<script>
+  		var day;
+  		$(document).ready(function() {
+  			year = $(".schedule-year").html();
+  			month = $(".schedule-month").html();
+  			day = $(".schedule-day").html();
+  		});
+  		
   		function checkTime(start) {
   			current = new Date();
-  			next = new Date(2014, 2, 28, start, 0, 0, 0);
+  			next = new Date(year, Number(month)-1, day, start, 0, 0, 0);
+
   			if(current.getFullYear() == next.getFullYear()) {
   				if(current.getMonth() == next.getMonth()) {
   					if(current.getDay() == next.getDay()) {
-  						console.log((current.getHours()) + " - " + (next.getHours()) + " = " + (current.getHours() - next.getHours()));
   						if(current.getHours() - next.getHours() == -1 && current.getMinutes() > 50) {
   							return true;
   						} else if (current.getHours() == next.getHours() && current.getMinutes() <= 50) {
   							return true;
   						}
+  					}
+  				}
+  			}
+  			
+  			return false;
+  		}
+  		
+  		function checkDay() {
+  			current = new Date();
+  			next = new Date(year, Number(month)-1, day, 0, 0, 0, 0);
+  			if(current.getFullYear() == next.getFullYear()) {
+  				if(current.getMonth() == next.getMonth()) {
+  					if(current.getDay() == next.getDay()) {
+  						return true;
   					}
   				}
   			}
@@ -114,13 +135,19 @@
 				}
 			
 				if(checkTime(militarytime)) {
-					timeString = $( this ).next("dd").next("dt").html();
-					current = $( this ).next("dd").next("dt").next("dd").html();
+					timeString = ($( this ).next("dd").next("dt").html()).trim();
+					current = ($( this ).next("dd").next("dt").next("dd").html()).trim();
 					if(typeof(timeString) != "undefined" && typeof(current) != "undefined") {
-						$( "#upnext" ).html(current + " from " + timeString);
+						$( "#upnext" ).html(current + " from " + timeString + ".");
 					} else {
-						$( "#upnext" ).html("Nothing scheduled for today.");
+						$( "#upnext" ).html("Nothing else scheduled for today.");
 					}
+					return false;
+				} else if(!checkDay()) {
+					$( "#upnext" ).html("Nothing scheduled for today.");
+					return false;
+				} else {
+					$( "#upnext" ).html("Nothing else scheduled for today.");
 				}
 			});
   		}

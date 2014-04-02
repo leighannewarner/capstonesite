@@ -41,8 +41,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
-						<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/capstonesite/schedule.php">Schedule</a></li>
-						<li class="dropdown' . (($active == 'projects') ? ' active' : '') . '">
+					  	<li class="dropdown' . (($active == 'projects') ? ' active' : '') . '">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 						  <ul class="dropdown-menu">
 						  	<li' . (($subactive == 'list') ? ' class="active"' : '') . '><a href="/capstonesite/index.php">Project List</a></li>
@@ -52,6 +51,7 @@
 							<li><a href="#">Project #3</a></li>
 						  </ul>
 						</li>
+						<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/capstonesite/schedule.php">Schedule</a></li>
 						<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/capstonesite/live.php">Live</a></li>
 						<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/capstonesite/map.php">Map</a></li>
 						<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/capstonesite/about.php">About</a></li>
@@ -241,12 +241,11 @@
 	}
 	
 	function schedule_content() {
-		echo '<div class="container">
+		echo '<div class="container schedule">
 					<div class="col-md-4 left-col">
-						<h2 class="green-text">Schedule</h2>
-						<dl class="schedule-list">';
+						<h2 class="green-text">Schedule</h2>';
 		echo schedule();	
-		echo '</dl>
+		echo '
 					</div>
 					<div class="col-md-8">
 						<h2 class="green-text">To Do List</h2>
@@ -271,11 +270,18 @@
 		{
 		   echo ( "Error in opening file" );
 		}
-
+		
+		$dateString = fgets($file);
+		$dateObj = date_parse($dateString);
+		$tempDate = mktime(0, 0, 0, $dateObj["month"], 1, 1900);
+		echo '<h4><span class="schedule-month" style="display: none">' . $dateObj["month"] .  '</span><span class="schedule-month-long">' . date("F",$tempDate) . '</span> <span class="schedule-day">' . $dateObj["day"] . '</span>, <span class="schedule-year">' . $dateObj["year"] . '</span></h4><br />';
+		echo '<dl class="schedule-list">';
+		
 		while (($buffer = fgets($file)) !== false) {
        		echo '<dt>' . $buffer . '</dt>
 				<dd>' . fgets($file) . '</dd>';
     	}
+    	echo '</dl>';
     	
     	fclose( $file );
 	}
