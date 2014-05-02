@@ -1,0 +1,30 @@
+byun.gif
+Young Joon Byun
+Computer Science
+Software Engineering
+ybyun@csumb.edu 
+cahill.gif
+Kevin Cahill
+Communication Design
+Web Design
+kcahill@csumb.edu
+lockwood.gif
+Kate Lockwood
+Computer Science
+Software Engineering
+klockwood@csumb.edu 
+long.gif
+Bobbi Long
+Communication Design
+Visual Design
+blong@csumb.edu
+narayanan.gif
+Sathya Narayanan
+Computer Science
+Networking & Security
+snarayanan@csumb.edu
+watson.gif
+Pat Watson
+Communication Design
+Interactive Media
+pwatson@csumb.edu 

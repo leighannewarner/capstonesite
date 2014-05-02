@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8"/>
   <head>
   
     <title>ITCD Capstone Festival</title>
@@ -20,7 +21,9 @@
     <!-- END BOOTSTRAP -->
     
     <link rel="stylesheet" media="only screen and (max-width: 768px)" href="css/mobile.css" />
+	<link href="//fonts.googleapis.com/css?family=Carrois+Gothic:400" rel="stylesheet" type="text/css">
     <?php include 'scripts/structure.php'; ?>
+    <script src="js/dynamicschedule.js"></script>
     
     <!-- FAVICON -->
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
@@ -51,6 +54,7 @@
   	
   	<script>
   		var day;
+  		var userSelectedMoreInfo = false;
   		$(document).ready(function() {
   			year = $(".schedule-year").html();
   			month = $(".schedule-month").html();
@@ -61,14 +65,25 @@
   			current = new Date();
   			next = new Date(year, Number(month)-1, day, start, 0, 0, 0);
 
-  			if(current.getFullYear() == next.getFullYear()) {
-  				if(current.getMonth() == next.getMonth()) {
-  					if(current.getDay() == next.getDay()) {
-  						if(current.getHours() - next.getHours() == -1 && current.getMinutes() > 50) {
-  							return true;
-  						} else if (current.getHours() == next.getHours() && current.getMinutes() <= 50) {
-  							return true;
-  						}
+  			if(checkDay()) {
+  				//console.log("Current time: " + current.getHours() + " \nChecking time: " + next.getHours());
+				if(current.getHours() - next.getHours() == -1 && current.getMinutes() > 50) {
+					return true;
+				} else if (current.getHours() == next.getHours() && current.getMinutes() <= 50) {
+					return true;
+				}
+  			}
+  			
+  			return false;
+  		}
+  		
+  		function checkDay() {
+  			currentday = new Date();
+  			nextday = new Date(year, Number(month)-1, day, 0, 0, 0, 0);
+  			if(currentday.getFullYear() == nextday.getFullYear()) {
+  				if(currentday.getMonth() == nextday.getMonth()) {
+  					if(currentday.getDay() == nextday.getDay()) {
+  						return true;
   					}
   				}
   			}
@@ -76,18 +91,9 @@
   			return false;
   		}
   		
-  		function checkDay() {
-  			current = new Date();
-  			next = new Date(year, Number(month)-1, day, 0, 0, 0, 0);
-  			if(current.getFullYear() == next.getFullYear()) {
-  				if(current.getMonth() == next.getMonth()) {
-  					if(current.getDay() == next.getDay()) {
-  						return true;
-  					}
-  				}
-  			}
-  			
-  			return false;
+  		function showMoreInfo(moreinfoid) {
+  			$( ".schedule-moreinfo" ).css("display", "none");
+			$( "#" + moreinfoid ).css("display", "block");
   		}
   		
   		function addActiveClassToSchedule() {
@@ -105,11 +111,21 @@
 				militarytime = 0;
 				if (ampm == "p" && time != 12) {
 					militarytime = Number(time) + 12;
+				} else {
+					militarytime = time;
 				}
 			
 				if(checkTime(militarytime)) {
 					$( this ).addClass("active");
 					$( this ).next("dd").addClass("active");
+					
+					if( !userSelectedMoreInfo ) {
+						$( ".arrow" ).removeClass("active");
+						$( this ).children(".arrow").addClass("active");
+						moreinfoid = $( this ).data( "moreinfoid" );
+						showMoreInfo( moreinfoid );
+					}
+					
 				} else {
 					$( this ).removeClass("active");
 					$( this ).next("dd").removeClass("active");
@@ -117,41 +133,15 @@
 			});
   		}
   		
-  		function updateUpNext() {
-  			$( ".schedule-list dt" ).each(function (index) {
-				var time = 0;
-				var ampm = "";
-				if ($( this ).text()[1] != ':') {
-					time = $( this ).text()[0] + $( this ).text()[1];
-					ampm = $( this ).text()[5];
-				} else {
-					time = ($( this ).text()[0]);
-					ampm = $( this ).text()[4];
-				}
-			
-				militarytime = 0;
-				if (ampm == "p" && time != 12) {
-					militarytime = Number(time) + 12;
-				}
-			
-				if(checkTime(militarytime)) {
-					timeString = ($( this ).next("dd").next("dt").html()).trim();
-					current = ($( this ).next("dd").next("dt").next("dd").html()).trim();
-					if(typeof(timeString) != "undefined" && typeof(current) != "undefined") {
-						$( "#upnext" ).html(current + " from " + timeString + ".");
-					} else {
-						$( "#upnext" ).html("Nothing else scheduled for today.");
-					}
-					return false;
-				} else if(!checkDay()) {
-					$( "#upnext" ).html("Nothing scheduled for today.");
-					return false;
-				} else {
-					$( "#upnext" ).html("Nothing else scheduled for today.");
-				}
-			});
-  		}
-  		
+  		$( ".schedule-list dt" ).click( function() {
+  			userSelectedMoreInfo = true;
+  			$( ".arrow" ).removeClass("active");
+			$( this ).children(".arrow").addClass("active");
+  			moreinfoid = $( this ).data( "moreinfoid" );
+  			showMoreInfo(moreinfoid);
+  			
+  		});
+  		  		
   		function init() {
   			addActiveClassToSchedule();
   			updateUpNext();
@@ -161,14 +151,7 @@
   		window.setInterval("updateUpNext()", 10000);
   		 
   		window.onload=function(){ init() };
-  		 
-		if(typeof(Storage)!=="undefined")
-		{
-			localStorage.setItem("todo", " Watch Group #1 presentation");
-		} else {
-			// Sorry! No Web Storage support..
-		}
-		 document.getElementById("todo").innerHTML=localStorage.getItem("todo"); 
+
   	</script>
   	
   </body>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="utf-8"/>
   <head>
   
     <title>ITCD Capstone Festival</title>
@@ -20,6 +21,8 @@
     <!-- END BOOTSTRAP -->
     
     <link rel="stylesheet" media="only screen and (max-width: 768px)" href="css/mobile.css" />
+	<link href="//fonts.googleapis.com/css?family=Carrois+Gothic:400" rel="stylesheet" type="text/css">
+    <script src="js/dynamicschedule.js"></script>
     <?php include 'scripts/structure.php'; ?>
     
     <!-- FAVICON -->
