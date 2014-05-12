@@ -1,11 +1,24 @@
 <?php
+	/*
+		Overall notes:
+		- Should probably update to use a global variable for filepath
+		- Should update SQL to use joins instead of nested loops
+		- Needs to be more ADA compliant
+	*/
+
 	ini_set('display_errors', 1); 
 	error_reporting(E_ALL);
 	
 	include 'dbconfig.php';
-		
+	
+	/* OUTPUTS NAVBAR */
+	/* This includes the skip-content link and header at the top of the page 
+	   $active should be the name of the current page and $subactive should
+	   be the name of the active link if it is under a dropdown menu. 
+	   Outputs a seperate nav for the mobile nav. */	
 	function navigation($active, $subactive="") {
-		echo '<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 text-left green-text">
+		echo '<a href="#main" class="skip-content">skip to content</a>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-9 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 text-left green-text">
   				<h4>School of Information Technology and Communication Design</h4>
   			</div>
   			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-10 text-left">
@@ -15,15 +28,15 @@
 
   		<div class="hidden-md hidden-lg hidden-sm row" id="small-nav">		
 			<div class="col-md-12">
-				<a href="/warnerleigha/capstonesite/index.php"><span class="glyphicon glyphicon-home"> </span></a>
+				<a href="/~capstone/index.php"><span class="glyphicon glyphicon-home"> </span></a>
 				<span class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown">' . ucwords($active) . ' <span class="glyphicon glyphicon-chevron-down"></span></a>
 				  <ul class="dropdown-menu">
-					<li' . (($active == 'projects') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/index.php">Projects</a></li>
-					<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/schedule.php">Schedule</a></li>
-					<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/live.php">Live</a></li>
-					<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/map.php">Map</a></li>
-					<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/about.php">About</a></li>
+					<li' . (($active == 'projects') ? ' class="active"' : '') . '><a href="/~capstone/index.php">Projects</a></li>
+					<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/~capstone/schedule.php">Schedule</a></li>
+					<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/~capstone/live.php">Live</a></li>
+					<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/~capstone/map.php">Map</a></li>
+					<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/~capstone/about.php">About</a></li>
 				  </ul>
 				</span>
 			</div>
@@ -46,16 +59,17 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
+					  	<li><a href="/~capstone/index.php"><span class="glyphicon glyphicon-home"> </span></a></li>
 					  	<li class="dropdown' . (($active == 'projects') ? ' active' : '') . '">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 						  <ul class="dropdown-menu">';
 		project_list($active, $subactive);
 		echo			  '</ul>
 							</li>
-							<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/schedule.php">Schedule</a></li>
-							<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/live.php">Live</a></li>
-							<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/map.php">Map</a></li>
-							<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/about.php">About</a></li>
+							<li' . (($active == 'schedule') ? ' class="active"' : '') . '><a href="/~capstone/schedule.php">Schedule</a></li>
+							<li' . (($active == 'live') ? ' class="active"' : '') . '><a href="/~capstone/live.php">Live</a></li>
+							<li' . (($active == 'map') ? ' class="active"' : '') . '><a href="/~capstone/map.php">Map</a></li>
+							<li' . (($active == 'about') ? ' class="active"' : '') . '><a href="/~capstone/about.php">About</a></li>
 						  </ul>
 						</div><!-- /.navbar-collapse -->
 					  </div><!-- /.container-fluid -->
@@ -63,6 +77,8 @@
 				</div>';
 	}
 	
+	/* OUTPUTS PROJECT DROPDOWN */
+	/* Outputs the dropdown links for the projects menu */
 	function project_list($active, $subactive) {
 
 		require 'dbconfig.php';
@@ -75,7 +91,7 @@
 		
 		echo '<div class="dropdown-column dropdown-column-left">';
 		
-		echo	'<li' . (($subactive == 'list') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/index.php">Project List</a></li>
+		echo	'<li' . (($subactive == 'list') ? ' class="active"' : '') . '><a href="/~capstone/index.php">Project List</a></li>
 				<li class="divider"></li>';
 		
 		for ($row_no = $projects_res->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -83,9 +99,9 @@
 			$projects_res->data_seek($row_no);
 			$row = $projects_res->fetch_assoc();
 			if(isset($_GET["id"]))
-				echo '<li' . (($_GET["id"] == '' . $row["id"] . '') ? ' class="active"' : '') . '><a href="/warnerleigha/capstonesite/project.php?id=' . $row["id"] . '">' . $row["title"] . '</a></li>';
+				echo '<li' . (($_GET["id"] == '' . $row["id"] . '') ? ' class="active"' : '') . '><a href="/~capstone/project.php?id=' . $row["id"] . '">' . $row["title"] . '</a></li>';
 			else {
-				echo '<li><a href="/warnerleigha/capstonesite/project.php?id=' . $row["id"] . '">' . $row["title"] . '</a></li>';
+				echo '<li><a href="/~capstone/project.php?id=' . $row["id"] . '">' . $row["title"] . '</a></li>';
 			}
 			
 			if(floor($projects_res->num_rows/3) == $row_no) {
@@ -100,6 +116,8 @@
 		
 	}
 	
+	/* OUTPUTS BLUE BAR ON PROJECTS PAGE */
+	/* Outputs different menus for mobile */
 	function sub_content_projects() {
 		echo '<div class="col-md-12 hidden-xs hidden-sm">
 					<a href="#" class="active show-grid">Grid View</a> &nbsp; <a href="#" class="show-list">List View</a> <span class="orange-text">&nbsp;|&nbsp;</span> Show: &nbsp;
@@ -134,6 +152,7 @@
 				</div>';
 	}
 	
+	/* OUTPUTS BLUE BAR ON OTHER PAGES */
 	function sub_content_upnext() {
 		echo '<div class="col-md-12">
 					Up Next <span class="orange-text">&nbsp;|&nbsp;</span> <span id="upnext">';
@@ -142,8 +161,11 @@
 				</div>';
 	}
 	
+	/* Pulls schedule info from a txt file so dynamicschedule.js can compare times
+	   and update the text as necessary. Outputs a span with the text in it for
+	   each event and hides and shows them as needed. */
 	function upnext_content() {
-		$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/schedule.txt";
+		$filename = "/home/capstone/public_html/content/schedule.txt";
 		
 		if (!file_exists($filename)) {
   			print 'File not found: . ' . $filename . ' <br/>';
@@ -157,7 +179,9 @@
 		
 		$dateString = fgets($file);
 		$dateObj = date_parse($dateString);
+		date_default_timezone_set("America/Los_Angeles"); 
 		$tempDate = mktime(0, 0, 0, $dateObj["month"], 1, 1900);
+		
 		echo '<span class="hidden upnext-date"><span class="upnext-month" style="display: none">' . $dateObj["month"] .  '</span> <span class="upnext-day">' . $dateObj["day"] . '</span>, <span class="upnext-year">' . $dateObj["year"] . '</span></span>';
 		echo '<span class="upnext-nothing">Nothing is scheduled for today.</span>';
 		echo '<span class="upnext-nothingelse">Nothing else is scheduled for today.</span>';
@@ -177,6 +201,7 @@
     	fclose( $file );
 	}
 	
+	/* OUTPUTS GRID ON THE HOMEPAGE */
 	function projects_grid() {
 		
 		echo '<div class="container project-grid">
@@ -188,6 +213,7 @@
 			</div>'; 
 	}
 	
+	/* Outputs the actual grid */
 	function generate_projects_grid() {	
 		require 'dbconfig.php';
 		
@@ -251,7 +277,7 @@
 						echo ' style="background-image: url(\'content/projects/' . sanitize($row["title"]) . '/icon.gif\')" >';
 					}
 			
-					echo	'<a href="/warnerleigha/capstonesite/project.php?id=' . $row["id"] . '" class="photogrid-hovertext">';
+					echo	'<a href="/~capstone/project.php?id=' . $row["id"] . '" class="photogrid-hovertext">';
 			
 					if($row["major"] == "Interdisciplinary") {
 						echo '<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>';
@@ -268,7 +294,7 @@
 			
 					$lastId = $currId;
 				}
-			} else {
+			} else { /* Handles if there are no students associated with the project. Shouldn't happen.*/
 				
 					echo '<div alt="' . $row["title"] . '" class="item col-xs-4 col-sm-2 col-md-1 photogrid photogrid-small';
 				
@@ -312,7 +338,7 @@
 							echo ' style="background-image: url(\'content/projects/' . sanitize($row["title"]) . '/icon.gif\')" >';
 						}
 				
-					echo	'<a href="/warnerleigha/capstonesite/project.php?id=' . $row["id"] . '" class="photogrid-hovertext">';
+					echo	'<a href="/~capstone/project.php?id=' . $row["id"] . '" class="photogrid-hovertext">';
 				
 					if($row["major"] == "Interdisciplinary") {
 						echo '<span class="photogrid-label cd">CD</span> <span class="photogrid-label csit">CSIT</span>';
@@ -330,6 +356,7 @@
 		}
 	}
 	
+	/* Outputs the listview for the projects page */
 	function projects_list() {
 	
 		require 'dbconfig.php';
@@ -390,13 +417,13 @@
 						<td>';
 					
 					if( file_exists ( 'content/projects/' . sanitize($row['title']) . '/icon.png' ) ) {
-						echo '<img src="content/projects/' . sanitize($row["title"]) .  '/icon.png" ';
+						echo '<img alt="' . $row["title"] . '" src="content/projects/' . sanitize($row["title"]) .  '/icon.png" ';
 					} else if ( file_exists ( 'content/projects/' . sanitize($row['title']) . '/icon.jpg' ) ) {
-						echo '<img src="content/projects/' . sanitize($row["title"]) .  '/icon.jpg" ';
+						echo '<img  alt="' . $row["title"] . '" src="content/projects/' . sanitize($row["title"]) .  '/icon.jpg" ';
 					} else if ( file_exists('content/projects/' . sanitize($row['title']) . '/icon.jpeg') ) {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/icon.jpeg" ';
+						echo '<img  alt="' . $row["title"] . '" src="content/projects/' . sanitize($row['title']) . '/icon.jpeg" ';
 					} else {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/icon.gif" ';
+						echo '<img  alt="' . $row["title"] . '" src="content/projects/' . sanitize($row['title']) . '/icon.gif" ';
 					}
 					
 					
@@ -410,9 +437,9 @@
 					
 					echo	'/>
 						</td>
-						<td>' .
+						<td><a href="project.php?id=' . $row['id'] . '">' .
 							$row["title"]
-						. '</td>
+						. '</a></td>
 						<td class="hidden-xs">';
 							
 						if($s_row["major"] === "Computer Science") {
@@ -438,7 +465,7 @@
 							
 					echo '</td>
 						<td class="hidden-xs"> Rm. ' .
-							'<a href="/warnerleigha/capstonesite/map.php?room=' . $row['poster_room'] .  '">' . $row["poster_room"] . '</a>'
+							'<a href="/~capstone/map.php?room=' . $row['poster_room'] .  '">' . $row["poster_room"] . '</a>'
 						. '</td>
 						<td class="hidden-xs">' .
 							$s_row["first_name"]
@@ -454,6 +481,7 @@
 				</table>';
 	}
 	
+	/* OUTPUTS THE PROJECT PAGE SKELETON */
 	function project_page() {
 	
 		require 'dbconfig.php';
@@ -472,16 +500,16 @@
 					<div class="col-xs-12 col-md-4">';
 					
 					if( file_exists('content/projects/' . sanitize($row['title']) . '/banner.jpg') ) {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/banner.jpg" class="project-page-icon" />
+						echo '<img  alt="' . $row["title"] . ' Banner"  src="content/projects/' . sanitize($row['title']) . '/banner.jpg" class="project-page-icon" />
 						<br />';
 					} else if ( file_exists('content/projects/' . sanitize($row['title']) . '/banner.png') ) {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/banner.png" class="project-page-icon" />
+						echo '<img  alt="' . $row["title"] . ' Banner" src="content/projects/' . sanitize($row['title']) . '/banner.png" class="project-page-icon" />
 						<br />';
 					} else if ( file_exists('content/projects/' . sanitize($row['title']) . '/banner.jpeg') ) {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/banner.jepg" class="project-page-icon" />
+						echo '<img  alt="' . $row["title"] . ' Banner" src="content/projects/' . sanitize($row['title']) . '/banner.jepg" class="project-page-icon" />
 						<br />';
 					} else {
-						echo '<img src="content/projects/' . sanitize($row['title']) . '/banner.gif" class="project-page-icon" />
+						echo '<img  alt="' . $row["title"] . ' Banner" src="content/projects/' . sanitize($row['title']) . '/banner.gif" class="project-page-icon" />
 						<br />';
 					}
 		
@@ -491,7 +519,7 @@
 							
 			echo			'<div class="row">
 								<div class="col-xs-12 col-md-12">
-									<img src="content/projects/' . sanitize($row['title']) . '/' . $s_row['profile_image'] . '" class="profile-img';
+									<img alt="Picture of ' . $s_row["first_name"] . ' ' . $s_row["last_name"] . '" src="content/projects/' . sanitize($row['title']) . '/' . $s_row['profile_image'] . '" class="profile-img';
 							if($s_row["major"] == "Computer Science") {
 								echo ' photogrid-csit-border';
 							} else if($s_row["major"] == "Communication Design") {
@@ -507,7 +535,7 @@
 									}
 									
 									if($s_row['resume'] != "") {
-										echo '<a href="content/projects/' . $s_row['resume'] . '">Resume</a>';
+										echo '<a href="content/projects/' . sanitize($row['title']) . '/' . $s_row['resume'] . '">Resume</a>';
 									}
 									
 									if($s_row['linkedin'] != "") {
@@ -578,52 +606,27 @@
 										echo '1:00pm - 1:50pm ';
 									}
 								  
-						echo '<span class="orange-text"> | </span> Poster Room: <a href="/warnerleigha/capstonesite/map.php?room=' . $row['poster_room'] .  '">'  . $row['poster_room'] .  '</a></h4>';
+						echo '<span class="orange-text"> | </span> Poster Room: <a href="/~capstone/map.php?room=' . $row['poster_room'] .  '">'  . $row['poster_room'] .  '</a></h4>';
 								
 								if(sanitize($row['pic1']) != "") {
-									echo '<img class="pic1" src="content/projects/' . sanitize($row['title']) . '/' . $row['pic1'] . '" />';
+									echo '<img alt="Optional photo illustrating the project description." class="pic1" src="content/projects/' . sanitize($row['title']) . '/' . $row['pic1'] . '" />';
 								}
 								
 								if(sanitize($row['pic2']) != "") {
 									echo '<div class="spacer"></div>
-									<img class="pic2" src="content/projects/' . sanitize($row['title']) . '/' . $row['pic2'] . '" />';
+									<img alt="A second optional photo illustrating the project description." class="pic2" src="content/projects/' . sanitize($row['title']) . '/' . $row['pic2'] . '" />';
 								}
 								
 								echo $row['description'] . '
 							</div>
 						</div>' .
-						/*<hr>
-						<div class="row" id="question-answer">
-							<div class="col-md-12">
-								<h3>Q & A</h3>
-								<h5 class="orange-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</h5>
-								<p>Praesent viverra blandit nibh eu laoreet. Suspendisse potenti. Nunc sit amet pharetra massa. Sed scelerisque arcu eu mauris gravida interdum. Cras consectetur nisi nec turpis vehicula semper. Etiam vestibulum ac turpis eu euismod. Quisque nec nibh mollis, sollicitudin felis tempus, placerat dui. In nec viverra ligula, ut malesuada dui. Vestibulum eu lorem ac quam euismod interdum. Curabitur cursus nulla vel dui luctus congue. Praesent ultricies sollicitudin quam ac bibendum. Vestibulum vehicula ligula aliquet eros blandit feugiat. Sed pretium quis tellus et dignissim. Aliquam aliquam turpis nulla, sit amet venenatis lorem euismod pretium. Cras vestibulum, libero non ultrices iaculis, mauris mauris rhoncus ante, dictum ullamcorper neque purus ac velit. </p>
-								<h3>Ask a Question</h3>									
-								<div class="form-group">
-									<textarea class="form-control" rows="5"></textarea>
-								</div>
-								<button type="submit" class="btn btn-primary btn-lg">Submit</button>
-								<br/><br/>
-							</div>
-						</div>*/
 						
 					'</div>	
 					
 				</div>';
 	}
 	
-	function page_navigation() {
-		echo'<div class="row" id="page-navigation">
-  			<div class="container">
-				<ul class="nav nav-pills nav-justified">
-				  <li class="right-padding" id="schedule-tab"><a href="#schedule">Schedule</a></li>
-				  <li class="active center-padding" id="projects-tab"><a href="#projects">Projects</a></li>
-				  <li class="left-padding" id="live-tab"><a href="#live">Live</a></li>
-				</ul>
-			</div>
-  		</div>';
-	}
-	
+	/* OUTPUT LIVE PAGE */
 	function live_content() {
 		echo '<div class="container">
 					<div class="col-md-4 left-col">
@@ -640,11 +643,14 @@
 					</div>
 					<div class="col-md-8">
 						<h2 class="green-text">Live Stream</h2>
-						<div class="video-placeholder"></div>
+						<div class="video-placeholder"><h3>We are currently working to have a livestream available!</h3>
+						<br/>
+						<h3>Check back after the festival for the recorded presentations!</h3></div>
 					</div>
 				</div>';
 	}
 	
+	/* OUTPUT SCHEDULE PAGE */
 	function schedule_content() {
 		echo '<div class="container schedule">
 					<div class="col-md-4 left-col">
@@ -660,6 +666,8 @@
 				</div>';
 	}
 	
+	/* Loads times from the schedule.txt file. 
+	   Gets students for each group from db*/
 	function schedule() {
 	
 		require 'dbconfig.php';
@@ -668,7 +676,7 @@
 			echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 		}
 				
-		$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/schedule.txt";
+		$filename = "/home/capstone/public_html/content/schedule.txt";
 		
 		if (!file_exists($filename)) {
   			print 'File not found: . ' . $filename . ' <br/>';
@@ -680,7 +688,7 @@
 		   echo ( "Error in opening file" );
 		}
 		
-		$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/awards.txt";
+		$filename = "/home/capstone/public_html/content/awards.txt";
 		
 		if (!file_exists($filename)) {
   			print 'File not found: . ' . $filename . ' <br/>';
@@ -694,8 +702,34 @@
 		
 		$dateString = fgets($file);
 		$dateObj = date_parse($dateString);
-		$tempDate = mktime(0, 0, 0, $dateObj["month"], 1, 1900);
-		echo '<h4><span class="schedule-month" style="display: none">' . $dateObj["month"] .  '</span><span class="schedule-month-long">' . date("F",$tempDate) . '</span> <span class="schedule-day">' . $dateObj["day"] . '</span>, <span class="schedule-year">' . $dateObj["year"] . '</span></h4><br />';
+
+		if($dateObj["month"] == "1") {
+			$tempDate = "January";
+		} else if ($dateObj["month"] == "2") {
+			$tempDate = "Febuary";
+		} else if ($dateObj["month"] == "3") {
+			$tempDate = "March";
+		} else if ($dateObj["month"] == "4") {
+			$tempDate = "April";
+		} else if ($dateObj["month"] == "5") {
+			$tempDate = "May";
+		} else if ($dateObj["month"] == "6") {
+			$tempDate = "June";
+		} else if ($dateObj["month"] == "7") {
+			$tempDate = "July";
+		} else if ($dateObj["month"] == "8") {
+			$tempDate = "August";
+		} else if ($dateObj["month"] == "9") {
+			$tempDate = "September";
+		} else if ($dateObj["month"] == "10") {
+			$tempDate = "October";
+		} else if ($dateObj["month"] == "11") {
+			$tempDate = "November";
+		} else if ($dateObj["month"] == "12") {
+			$tempDate = "December";
+		}
+
+		echo '<h4><span class="schedule-month" style="display: none">' . $dateObj["month"] .  '</span><span class="schedule-month-long">' . $tempDate . '</span> <span class="schedule-day">' . $dateObj["day"] . '</span>, <span class="schedule-year">' . $dateObj["year"] . '</span></h4><br />';
 		echo '<dl class="schedule-list">';
 		
 		$counter = 1;
@@ -750,10 +784,12 @@
     	
     	return $info;
 	}
-		
+	
+	/* OUTPUT MAP PAGE */	
+	/* Pulls the room numbers and coordinates from the rooms.txt file. */
 	function map_content() {
 	
-		$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/rooms.txt";
+		$filename = "/home/capstone/public_html/content/rooms.txt";
 		
 		if (!file_exists($filename)) {
   			print 'File not found: . ' . $filename . ' <br/>';
@@ -781,6 +817,7 @@
 		echo '			</div>
 					</div>
 					<div class="col-md-8 map-container">
+						<h4><a href="https://www.google.com/maps/place/Media+Learning+Center,+3110+Inter-Garrison+Rd/@36.6542775,-121.7998357,17z/data=!3m2!4b1!5s0x808dfca898f458c5:0xff6f35682f685ca0!4m2!3m1!1s0x808dfca8987d58e7:0x5dc90e381c8199c">Media Learning Center</a> <span class="orange-text">|</span> 3110 Inter-Garrison Rd <span class="orange-text">|</span><br /> California State University Monterey Bay, Seaside, CA 93955</h4>
 						<div id="map-canvas"></div>
 					</div>
 				</div>';
@@ -794,6 +831,7 @@
 		}
 	}
 	
+	/* Helper for the map room. */
 	function map_room($room, $lat, $long) {
 		require 'dbconfig.php';
 		$projects_res = $mysqli->query("SELECT * FROM projects WHERE poster_room='" . $room . "' ORDER BY title DESC");
@@ -848,13 +886,16 @@
 						  </div>';
 	}
 	
+	
+	/* OUTPUT ABOUT PAGE */
+	/* Loads advisors from advisors.txt */
 	function about_content() {
 		echo '<div class="container">
 					<div class="col-xs-12 col-md-4">
 					<br />
 					<h2> Advisors </h2>';
 								
-					$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/advisors.txt";
+					$filename = "/home/capstone/public_html/content/advisors.txt";
 		
 					if (!file_exists($filename)) {
 						print 'File not found: . ' . $filename . ' <br/>';
@@ -873,9 +914,15 @@
 						$email = fgets($file);
 						
 						echo '<div class="row">
-							<div class="col-xs-12 col-md-12">
-								<img src="content/advisor_pics/' . $photo . '" class="profile-img photogrid-csit-border" />
-								<h4>' . $name . '</h4>
+							<div class="col-xs-12 col-md-12">';
+								
+							if(trim($major) == "Computer Science") {
+								echo '<img  alt="Photo of ' . $name . '" src="content/advisor_pics/' . $photo . '" class="profile-img photogrid-csit-border" />';
+							} else {
+								echo '<img  alt="Photo of ' . $name . '" src="content/advisor_pics/' . $photo . '" class="profile-img photogrid-cd-border" />';
+							}
+							
+						echo	'<h4>' . $name . '</h4>
 								<span class="green-text">' . $major . '</span><br />
 								<span class="green-text"><i>' . $concentration . '</i></span> <br />
 								<span class="orange-text">' . $email. '</span> <br />

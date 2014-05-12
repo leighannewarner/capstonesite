@@ -43,7 +43,7 @@
 				<?php sub_content_upnext(); ?>
 			</div>
 	
-			<div class="row content">
+			<div class="row content" id="main">
 				<?php project_page(); ?>
 			</div>
 		</div>

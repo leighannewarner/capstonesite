@@ -45,7 +45,7 @@
 				<?php sub_content_upnext(); ?>
 			</div>
 	
-			<div class="row content">
+			<div class="row content" id="main">
 				<?php live_content(); ?>
 			</div>
 		</div>

@@ -92,7 +92,7 @@
 							echo "Going through files.<br />";
 
 							
-							$filename = $_SERVER['DOCUMENT_ROOT'] . "/warnerleigha/capstonesite/content/";
+							$filename = "content/";
 							
 							ini_set('auto_detect_line_endings',TRUE);
 							$file = $filename . "project_info.txt";
@@ -105,7 +105,7 @@
 									$project_title = $mysqli->real_escape_string($data[1]);
 									$project_major = $mysqli->real_escape_string($data[2]);
 									$project_descr = $mysqli->real_escape_string($data[3]);
-									$project_descr = htmlentities($project_descr, ENT_QUOTES | ENT_SUBSTITUTE, "ISO-8859-1");
+									$project_descr = htmlentities($project_descr, ENT_QUOTES, "ISO-8859-1");
 									$project_descr = mb_convert_encoding($project_descr, "UTF-8", "ISO-8859-1");
 									$project_descr = str_replace('\r', "<br />", $project_descr);
 									$project_descr = str_replace('&Otilde;', "&#39;", $project_descr);
@@ -127,7 +127,7 @@
 									}
 								}
 							} else {
-								echo "Couldn't open projects file.";
+								echo "Couldn't open projects file at " . $file;
 							}
 							
 							fclose($handle);
@@ -157,7 +157,7 @@
 									$student_pic = $mysqli->real_escape_string($data[12]);
 														
 									if ( !$mysqli->query("INSERT INTO students(`project_id`, `last_name`, `first_name`, `major`, `concentration`, `email`, `resume`, `linkedin`, `portfolio`, `github`, `jobdes`, `jobloc`, `profile_image`) 
-												VALUES ( '" . $student_id . "', '" . $student_last . "', '" . $student_first . "', '" . $student_major . "', '" . $student_conc . "', '" . $student_email. "', '" . $student_resume . "', '" . $student_linkedin . "', '" . $student_portfolio . "', '" . $student_github . "', '" . $student_jobdes .  "', '" . $student_jobbloc . "', '" . $student_pic . "')") ) {
+												VALUES ( '" . $student_id . "', '" . $student_last . "', '" . $student_first . "', '" . $student_major . "', '" . $student_conc . "', '" . $student_email. "', '" . $student_resume . "', '" . $student_linkedin . "', '" . $student_portfolio . "', '" . $student_github . "', '" . $student_job_desc .  "', '" . $student_job_loc . "', '" . $student_pic . "')") ) {
 										echo "Insert for " . $student_last . " failed because: " . $mysqli->error . ". <br />";
 									} else {
 										echo "Added " . $student_last . ".<br />";

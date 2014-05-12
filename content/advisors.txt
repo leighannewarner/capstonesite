@@ -1,29 +1,29 @@
-byun.gif
+byun.png
 Young Joon Byun
 Computer Science
 Software Engineering
 ybyun@csumb.edu 
-cahill.gif
+cahill.png
 Kevin Cahill
 Communication Design
 Web Design
 kcahill@csumb.edu
-lockwood.gif
+lockwood.png
 Kate Lockwood
 Computer Science
 Software Engineering
 klockwood@csumb.edu 
-long.gif
+long.png
 Bobbi Long
 Communication Design
 Visual Design
 blong@csumb.edu
-narayanan.gif
+narayanan.png
 Sathya Narayanan
 Computer Science
 Networking & Security
 snarayanan@csumb.edu
-watson.gif
+watson.png
 Pat Watson
 Communication Design
 Interactive Media

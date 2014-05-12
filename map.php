@@ -41,7 +41,7 @@
       #map-canvas img{max-width: inherit;}
     </style>
     <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVhJVL_Po6V5Lzk3RYnpOYxA1v3KEBOrM&sensor=true">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVhJVL_Po6V5Lzk3RYnpOYxA1v3KEBOrM&sensor=false">
     </script>
     <script type="text/javascript">
     	var map;
@@ -53,19 +53,18 @@
           center: new google.maps.LatLng(36.6542302, -121.799859),
           zoom: 19
 		  }
-		  addYouMarker();
+		 // addYouMarker();
         
         map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
+            
+            setActive();
       }
       google.maps.event.addDomListener(window, 'load', initialize);
       
 		var initialLocation;
-		var siberia = new google.maps.LatLng(60, 105);
-		var newyork = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
-		var browserSupportFlag =  new Boolean();
       
-      function addMarker(lat, lng, title) {      
+      function addMarker(lat, lng, title) {
       	if(typeof(room_marker) != "undefined") {
       		room_marker.setMap(null);
       	}
@@ -80,7 +79,7 @@
       
       function addYouMarker() {
             
-      	if(typeof(you_marker) != "undefined") {
+      /*	if(typeof(you_marker) != "undefined") {
       		room_marker.setMap(null);
       	}
       	
@@ -99,7 +98,7 @@
 			   });
 			   
 			});
-		}
+		}*/
 				  
       }
 
@@ -136,6 +135,6 @@
       		$( this ).addClass('active');
       });
   	
-  </script>
+	  </script>
   
 </html>
