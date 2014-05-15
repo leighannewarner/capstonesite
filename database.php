@@ -45,6 +45,9 @@
 					<div class="row content">
 					Refreshing the database! <br />
 						<?php
+							/* This script uploads all the data from the tab seperated files
+							    into the database. Just go to[URL]/database.php to run the script. 
+							    This file should be deleted from the server once all the data is in place. */
 							require "scripts/dbconfig.php";
 						
 							if ( !$mysqli->query("DROP TABLE IF EXISTS projects") ||
@@ -59,6 +62,7 @@
 												  `pic2` tinytext NOT NULL,
 												  `rating` decimal(11,0) NOT NULL DEFAULT '0',
 												  `url` tinytext NOT NULL,
+												  `award` tinytext NOT NULL,
 												  PRIMARY KEY (`id`)
 												) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ") ) {
 								echo "Table creation failed: (" . $mysqli->errno . ") " . $mysqli->error;
@@ -118,9 +122,10 @@
 									$project_pic1 = $mysqli->real_escape_string($data[7]);
 									$project_pic2 = $mysqli->real_escape_string($data[8]);
 									$project_rating = 0;
+									$project_award = $mysqli->real_escape_string($data[9]);
 																												
-									if ( !$mysqli->query("INSERT INTO projects(`title`, `major`, `description`, `pres_group`, `poster_room`, `pic1`, `pic2`, `url`, `rating`) 
-												VALUES ( '" . $project_title . "', '" . $project_major . "', '" . $project_descr . "', '" . $project_pres . "', '" . $project_room . "', '" . $project_pic1 . "', '" . $project_pic2 . "', '" . $project_url . "', '" . $project_rating . "')") ) {
+									if ( !$mysqli->query("INSERT INTO projects(`title`, `major`, `description`, `pres_group`, `poster_room`, `pic1`, `pic2`, `url`, `rating`, `award`) 
+												VALUES ( '" . $project_title . "', '" . $project_major . "', '" . $project_descr . "', '" . $project_pres . "', '" . $project_room . "', '" . $project_pic1 . "', '" . $project_pic2 . "', '" . $project_url . "', '" . $project_rating . "', '" . $project_award . "')") ) {
 										echo "Insert for " . $project_title . " failed because: " . $mysqli->error . ". <br />";
 									} else {
 										echo "Added " . $project_title . ".<br />";

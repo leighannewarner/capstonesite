@@ -55,7 +55,7 @@
 						<span class="icon-bar"></span>
 					  </button>
 					</div>
-
+					
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
@@ -75,6 +75,10 @@
 					  </div><!-- /.container-fluid -->
 					</nav>
 				</div>';
+	}
+	
+	function output_header($year) {
+	
 	}
 	
 	/* OUTPUTS PROJECT DROPDOWN */
@@ -579,7 +583,13 @@
 							
 							<div class="col-md-12">'
 								 . (($row['url'] != "") ? '<a href="' . $row['url'] . '">' : '') . '<h2>' . $row['title'] . '</h2>' . (($row['url'] != "") ? '</a>' : '') .
-							'</div>' .
+							'</div>';
+							
+							if($row['award'] != "") {
+								echo '<div class="col-md-12 award-text">'
+									 . $row['award'] .
+								'</div>';
+							}
 							/*<div class="col-md-6">
 								/*<h2 class="orange-text">' .
 									'<a href="#" class="rating-star">' . (($row['rating'] > 0.5) ? '<span class="glyphicon glyphicon-star"></span> ' : '<span class="glyphicon glyphicon-star-empty"></span> ') . '</a>' .
@@ -589,7 +599,7 @@
 									'<a href="#" class="rating-star">' . (($row['rating'] > 4.5) ? '<span class="glyphicon glyphicon-star"></span> ' : '<span class="glyphicon glyphicon-star-empty"></span> ') . '</a>' .
 									</h2>
 							'</div>*/
-						'</div>
+		echo				'</div>
 						<div class="row">
 							<div class="col-md-12 project-description">
 								<h4>Presentation Group: ';
@@ -643,9 +653,8 @@
 					</div>
 					<div class="col-md-8">
 						<h2 class="green-text">Live Stream</h2>
-						<div class="video-placeholder"><h3>We are currently working to have a livestream available!</h3>
-						<br/>
-						<h3>Check back after the festival for the recorded presentations!</h3></div>
+						<h4>Miss something? Check back after the festival for the recorded presentations!</h4>
+						<div class="video-placeholder"><iframe width="560" height="315" src="//www.youtube.com/embed/jnpdP7M9KxQ" frameborder="0" allowfullscreen></iframe></div>
 					</div>
 				</div>';
 	}
@@ -743,7 +752,6 @@
 			
 			$info = $info . '<div id="moreinfo'. $counter . '" class="schedule-moreinfo"'  . (($counter == 1) ? 'style="display: block"' : '') . '><h2>' . $ddbuffer . '</h2><ul>';
 			
-			if($counter < 6) {
 				$projects_res = $mysqli->query("SELECT * FROM `projects` WHERE `pres_group` = " . $counter ." ORDER BY `projects`.`title` DESC ");
 			
 				for ($row_no = $projects_res->num_rows - 1; $row_no >= 0; $row_no--) {
@@ -767,11 +775,6 @@
 					$info = $info . '<li><a href="project.php?id=' . $row['id'] . '">' . $row['title'] . '</a> - ' . $names . '</li>';
 				}
 				
-			} else {
-				while (($awards_buffer = fgets($awards_file)) !== false) {
-					$info = $info . '<li><span class="green-text">' . $awards_buffer . '</span> - ' . fgets($awards_file) . '</li>';
-				}
-			}
 			
 			$info = $info . '</ul></div>';
 			

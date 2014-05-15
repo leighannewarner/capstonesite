@@ -504,6 +504,12 @@ a:hover.rating-star {
  	border: #b0d235;
  }
  
+ .award-text {
+ 	color: #f26522;
+ 	font-size: 1.5em;
+ 	text-transform: uppercase;
+ }
+ 
 /********** GENERAL CLASSES **********/
 .green-text {
 	color: #b0d235;
@@ -527,10 +533,11 @@ ul.dropdown-menu {
 }
 
 .video-placeholder {
-	background: #002a4e;
-	height: 500px;
-	margin: 10px;
-	padding: 5px;
+	background: none repeat scroll 0% 0% #002A4E;
+    height: 335px;
+    margin: 10px;
+    padding: 10px;
+    padding-left: 8px;
 }
 
 .video-placeholder h3 {
